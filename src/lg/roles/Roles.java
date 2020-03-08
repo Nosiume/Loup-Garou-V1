@@ -1,0 +1,19 @@
+package lg.roles;
+
+public enum Roles {
+
+	CUPIDON, // DONE
+	WITCH, // DONE
+	FORTUNE_TELLER, // DONE
+	WEREWOLF, // DONE
+	WHITE_WEREWOLF,
+	INFECTED_WEREWOLF,
+	HUNTER, // DONE
+	ELDER, // DONE
+	SALVATOR,
+	WILD_CHILD, // DONE
+	TELEPATH, // DONE
+	DETECTIVE, // DONE
+	LGBT; // DONE
+	
+}

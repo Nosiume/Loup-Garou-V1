@@ -1,0 +1,58 @@
+name: LoupGarou
+author: Nosiume
+version: 1.0
+main: lg.LGPlugin
+api-version: 1.13
+commands:
+  lg-setlobby:
+    description: Modifie le lobby du loup-garou
+    permission: lg.setlobby.use
+  lg-setgamesize:
+    description: Modifie le nombre de joueur dans une game de loup loup-garou
+    permission: lg.setgamesize.use
+    usage: §cUsage is /lg-setgamesize <size>
+  lg-setstarting:
+    description: Modifie le processus de démarrage du jeu.
+    permission: lg.setstarting.use
+    usage: §cUsage is /lg-setstarting <command | auto>
+  lg-addspawn:
+    description: Ajoute un point d'apparition in game.
+    permission: lg.addspawn.use
+  lg-start:
+    description: Pour lancer la game (ne fonctionne que en mode de lancement "command")
+    permission: lg.start.use
+  lg-kill:
+    description: Pour tuer / éliminer un joueur de la partie
+    permission: lg.kill.use
+  lg-telepath: 
+    description: Commande du télépathe.
+  lg-cupidon:
+    description: Commande du cupidon.
+  lg-wildchild:
+    description: Commande de l'enfant sauvage.
+  lg-fteller:
+    description: Commande de la voyante.
+  lg-detective:
+    description: Commande du detective.
+  lg-lgbt:
+    description: Commande du pd.
+  lg-witch:
+    description: Commande de la sorcière.
+  lg-salva:
+    description: Commande du salvateur.
+  lg-ipdl:
+    description: Commande de l'infect père des loups.
+  lg-npc:
+    description: test
+    permission: test
+  lg-c:
+    description: Chat du couple
+    usage: §cUsage is /lg-c <message>
+  lg-togglegay:
+    description: Active ou désactive le gay.
+  lg-lg:
+    description: Affiche la liste des loups-garous (seulement in game pour les joueurs loups-garous).
+  lg-me:
+    description: Affiche votre rôle et les informations complémentaires.
+  lg-roles:
+    description: Affiche les rôles et leurs informations complémentaires.
