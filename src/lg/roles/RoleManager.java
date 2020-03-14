@@ -11,9 +11,8 @@ import java.util.Random;
 import lg.LGPlugin;
 import lg.game.LGGame;
 import lg.roles.roles.Cupidon;
-import lg.roles.roles.Detective;
 import lg.roles.roles.Elder;
-import lg.roles.roles.FortuneTeller;
+import lg.roles.roles.LGBT;
 import lg.roles.roles.Werewolf;
 import lg.roles.roles.WildChild;
 
@@ -32,8 +31,8 @@ public class RoleManager {
 	{
 		//TODO: Create all roles class
 		roles.put(Roles.WEREWOLF, new Werewolf());
-		roles.put(Roles.FORTUNE_TELLER, new FortuneTeller());
-		roles.put(Roles.DETECTIVE, new Detective());
+		roles.put(Roles.ELDER, new Elder());
+		roles.put(Roles.LGBT, new LGBT());
 	}
 	
 	public void addRole(Roles roleTAG, Role role)
@@ -111,9 +110,11 @@ public class RoleManager {
 						/*&& role.getTeamSize() >= 4*/)
 				{
 					Werewolf werewolf = (Werewolf) role;
-					if(i == /*2*/ 0)
+					if(i == 12)
+						werewolf.anonyme = online.get(index);
+					else if(i == /*2*/ 12)
 						werewolf.ipdl = online.get(index);
-					else if (i == /*3*/ 1)
+					else if (i == /*3*/ 0)
 						werewolf.whiteWerewolf = online.get(index);
 				}
 				

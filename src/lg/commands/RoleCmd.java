@@ -17,6 +17,16 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 public class RoleCmd implements CommandExecutor {
 
+	public static ItemStack villager;
+	
+	public RoleCmd()
+	{
+		villager = new ItemStack(Material.BOWL, 1);
+		ItemMeta meta = villager.getItemMeta();
+		meta.setDisplayName("§eVillageois");
+		villager.setItemMeta(meta);
+	}
+	
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String msg,
 			String[] args) {
@@ -49,6 +59,9 @@ public class RoleCmd implements CommandExecutor {
 			}
 			
 			inv.addItem(Werewolf.ipdlItem);
+			inv.addItem(Werewolf.anoItem);
+			inv.addItem(Werewolf.wwItem);
+			inv.addItem(villager);
 			
 			p.openInventory(inv);
 		}

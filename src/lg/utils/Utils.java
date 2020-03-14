@@ -4,6 +4,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
 
 import lg.LGPlugin;
 import lg.game.LGGame;
@@ -116,6 +117,15 @@ public class Utils {
         
         return null;
     }
+	
+	public static void wait(int timeSeconds)
+	{
+		try {
+			TimeUnit.SECONDS.wait(timeSeconds);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
 	
 	private static Class<?> getNMSClass(String prefix, String nmsClassString) throws ClassNotFoundException {
        String version = Bukkit.getServer().getClass().getPackage().getName().replace(".", ",").split(",")[3] + ".";

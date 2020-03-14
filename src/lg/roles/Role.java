@@ -15,7 +15,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
-public abstract class Role {
+public abstract class Role implements Comparable<Role> {
 
 	//Role values
 	public ItemStack item;
@@ -31,6 +31,7 @@ public abstract class Role {
 	private Sound sound;
 	private PotionEffectType effect;
 	private String desc;
+	private int order;
 	
 	//Role constructor
 	public Role(String name, 
@@ -41,7 +42,8 @@ public abstract class Role {
 			Type type,
 			Sound sound,
 			PotionEffectType effect,
-			String desc)
+			String desc,
+			int order)
 	{
 		this.name = name;
 		this.players = new ArrayList<Player>();
@@ -53,6 +55,13 @@ public abstract class Role {
 		this.sound = sound;
 		this.effect = effect;
 		this.desc = desc;
+	}
+	
+	//Overrided methods
+	@Override
+	public int compareTo(Role r)
+	{
+		return this.order - r.getOrder();
 	}
 	
 	//Events
@@ -92,7 +101,10 @@ public abstract class Role {
 				Werewolf werewolf = (Werewolf) this;
 				if(werewolf.isIPDL(player))
 					effect = PotionEffectType.INCREASE_DAMAGE;
-				//TODO: Check lgb
+				else if (werewolf.isAnonyme(player))
+					effect = PotionEffectType.DOLPHINS_GRACE;
+				else if (werewolf.isWhiteWerewolf(player))
+					effect = PotionEffectType.SLOW_DIGGING;
 			}
 			
 			player.addPotionEffect(new PotionEffect(effect, 999999, 0, true, true), true);
@@ -171,6 +183,11 @@ public abstract class Role {
 	public String getDesc()
 	{
 		return desc;
+	}
+	
+	public int getOrder()
+	{
+		return order;
 	}
 	
 	public boolean isDead()

@@ -1,6 +1,7 @@
 package lg.game.events;
 
 import lg.LGPlugin;
+import lg.commands.RoleCmd;
 import lg.roles.Role;
 import lg.roles.roles.Werewolf;
 
@@ -34,6 +35,23 @@ public class RoleCmdEvents implements Listener {
 				printRole(p, 
 						"Infect père des loups",
 						"Vous devez éliminer tous les innocents (ceux qui ne sont pas loup-garou). Une fois dans la partie, vous pouvez décider d'infecter un villageois tué par les loup-garou, ce dernier passera dans le camp des loup-garou. L'infecté gardera les facultés de son rôle.");
+				p.closeInventory();
+			} else if (it.isSimilar(Werewolf.anoItem))
+			{
+				printRole(p,
+						"Loup Anonyme",
+						"Vous faites parti du camp des loups-garou, si vous vous faite espionner par la voyante, elle verra que vous êtes simple villageois.");
+				p.closeInventory();
+			} else if (it.isSimilar(Werewolf.wwItem))
+			{
+				printRole(p,
+						"Loup-Garou Blanc",
+						"Vous devez gagner SEUL. Toutes les deux nuits, vous pouvez éliminer un loup garou. Les autres compères loup garou pensent que vous êtes aussi Loup Garou simple.");
+				p.closeInventory();
+			} else if (it.isSimilar(RoleCmd.villager)){
+				printRole(p,
+						"Villageois",
+						"Vous ne pouvez que voter lors du vote du village. Sinon tu sers à rien.");
 				p.closeInventory();
 			}
 			

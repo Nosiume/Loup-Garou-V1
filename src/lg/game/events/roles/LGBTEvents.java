@@ -4,6 +4,7 @@ import lg.LGPlugin;
 import lg.commands.roles.LGBTCmd;
 import lg.game.LGGame;
 import lg.roles.Roles;
+import lg.roles.roles.LGBT;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -80,8 +81,12 @@ public class LGBTEvents implements Listener {
 					player -> {
 						if (it.getItemMeta().getDisplayName()
 								.equalsIgnoreCase("§e" + player.getName())) {
-							// TODO: Choosing effects
-
+							
+							LGBT lgbt = (LGBT) LGPlugin.getRoleManager().getRole(Roles.LGBT);
+							lgbt.target = player;
+							lgbt.canUse = false;
+							
+							p.sendMessage(LGPlugin.PREFIX + "§eLe joueur §c" + player.getName() + " §eaura 2 votes au prochain tour.");
 							event.setCancelled(true);
 							p.closeInventory();
 							return;
@@ -91,4 +96,29 @@ public class LGBTEvents implements Listener {
 		}
 	}
 
+	@EventHandler
+	public void onKill(InventoryClickEvent event)
+	{
+		Player p = (Player) event.getWhoClicked();
+		ItemStack it = event.getCurrentItem();
+		InventoryView view = event.getView();
+		if (it != null
+				&& view.getTitle()
+						.equalsIgnoreCase("§bQui est l'harceleur ?")) {
+			Bukkit.getOnlinePlayers().forEach(
+					player -> {
+						if (it.getItemMeta().getDisplayName()
+								.equalsIgnoreCase("§e" + player.getName())) {
+
+							LGGame.toKill.add(player);
+							p.sendMessage(LGPlugin.PREFIX + "§eLe joueur §c" + player.getName() + " §esera retrouvé mort au lever du jour.");
+							((LGBT) LGPlugin.getRoleManager().getRole(Roles.LGBT)).canKill = false;
+							event.setCancelled(true);
+							p.closeInventory();
+							return;
+						}
+					});
+			event.setCancelled(true);
+		}
+	}
 }

@@ -28,6 +28,7 @@ public class NightCountdown extends BukkitRunnable {
 	
 	public NightCountdown(List<Role> toPass, int roleTimeout)
 	{
+		Werewolf.wwNightCount++;
 		this.toPass = toPass;
 		this.roleTimeout = roleTimeout;
 		this.timeout = roleTimeout;
@@ -36,6 +37,7 @@ public class NightCountdown extends BukkitRunnable {
 	
 	public NightCountdown(List<Role> toPass)
 	{
+		Werewolf.wwNightCount++;
 		this.toPass = toPass;
 		this.runTaskTimer(LGPlugin.instance, 0, 20);
 	}
@@ -94,14 +96,27 @@ public class NightCountdown extends BukkitRunnable {
 					//Activating IPDL Power
 					if(!LGGame.toKill.isEmpty() && 
 							werewolf.canIPDLUse && 
-							!LGGame.deadPlayers.contains(werewolf.ipdl))
+							!LGGame.deadPlayers.contains(werewolf.ipdl) &&
+							werewolf.ipdl != null)
 						werewolf.onIPDLActivation();
+					
+					//Activating WW Power
+					if(!werewolf.isDead() && Werewolf.wwNightCount == 2)
+					{
+						if(!LGGame.deadPlayers.contains(werewolf.whiteWerewolf) &&
+								werewolf.whiteWerewolf != null)
+						{
+							//Activates power
+							werewolf.onLGBActivation();
+							Werewolf.wwNightCount = 0;
+						}
+					}
 				}
 				
 				if(toPass.size() == currentIndex+1)
 				{
 					running = false;
-					LGGame.day();
+					new NightToDayTransition().runTaskTimer(LGPlugin.instance, 0, 20);
 					return;
 				}
 				timeout = roleTimeout+1;

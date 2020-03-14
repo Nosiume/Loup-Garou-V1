@@ -6,6 +6,7 @@ import lg.LGPlugin;
 import lg.roles.Role;
 import lg.roles.Roles;
 import lg.roles.roles.FortuneTeller;
+import lg.roles.roles.Werewolf;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Sound;
@@ -31,18 +32,30 @@ public class FTellerEvents implements Listener {
 				{
 					FortuneTeller fTeller = (FortuneTeller) LGPlugin.getRoleManager().getRole(Roles.FORTUNE_TELLER);
 					List<Role> role = LGPlugin.getRoleManager().getPlayerRole(player);
-					
-					//TODO: verif si ipdl ou lgb
+					String roleName = role.get(0).getName();
+
+					//Check for ipdl, ano & lgb
+					if(role.size() == 1 && 
+							LGPlugin.getRoleManager().getRoleID(role.get(0)) == Roles.WEREWOLF)
+					{
+						Werewolf werewolf = (Werewolf) role.get(0);
+						if(werewolf.isIPDL(player))
+							roleName = "Infect père des loups";
+						else if (werewolf.isAnonyme(player))
+							roleName = "Simple Villageois";
+						else if (werewolf.isWhiteWerewolf(player))
+							roleName = "Loup-Garou Blanc";
+					}
 					
 					p.sendMessage(LGPlugin.PREFIX + "§aVous avez espionné §c" + player.getName());
 					
 					if(role.size() > 1)
 					{
-						Role beforeInf = LGPlugin.getRoleManager().getRoleBeforeInfect(role);
-						Bukkit.broadcastMessage(LGPlugin.PREFIX + "§eLa voyante a espionné un §cLoup-Garou - " + beforeInf.getName());
+						roleName = LGPlugin.getRoleManager().getRoleBeforeInfect(role).getName();
+						Bukkit.broadcastMessage(LGPlugin.PREFIX + "§eLa voyante a espionné un §cLoup-Garou - " + roleName);
 					} 
 					else
-						Bukkit.broadcastMessage(LGPlugin.PREFIX + "§eLa voyante a espionné une personne qui est §c" + role.get(0).getName());
+						Bukkit.broadcastMessage(LGPlugin.PREFIX + "§eLa voyante a espionné une personne qui est §c" + roleName);
 					
 					p.playSound(p.getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 1f, 1f);
 					

@@ -32,7 +32,8 @@ public class Witch extends Role {
 				Type.VILLAGER, 
 				Sound.ENTITY_WITCH_AMBIENT,
 				PotionEffectType.FAST_DIGGING,
-				"Vous possèdez deux potions, une potion de vie et une potion de mort, chaque nuit, vous pouvez décider de ressusciter un villageois qui a été tué par les loups garous, ou de tuer un villageois que vous trouvez suspect. Vous ne pouvez utiliser qu'une potion par nuit, et vous n'en avez qu'une de chaque.");
+				"Vous possèdez deux potions, une potion de vie et une potion de mort, chaque nuit, vous pouvez décider de ressusciter un villageois qui a été tué par les loups garous, ou de tuer un villageois que vous trouvez suspect. Vous ne pouvez utiliser qu'une potion par nuit, et vous n'en avez qu'une de chaque.",
+				5);
 	
 		this.item = new ItemStack(Material.CAULDRON, 1);
 		ItemMeta meta = item.getItemMeta();

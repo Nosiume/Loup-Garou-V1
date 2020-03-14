@@ -25,7 +25,8 @@ public class Telepath extends Role {
 				Type.VILLAGER,
 				Sound.ENTITY_GUARDIAN_ATTACK,
 				PotionEffectType.LUCK,
-				"Chaque nuit, vous pouvez envoyer un message anonyme au rôle que vous voulez. ");
+				"Chaque nuit, vous pouvez envoyer un message anonyme au rôle que vous voulez. ",
+				0);
 	
 		this.item = new ItemStack(Material.ENDER_PEARL, 1);
 		ItemMeta meta = item.getItemMeta();

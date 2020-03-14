@@ -29,9 +29,12 @@ public class GiveRoleCountdown extends BukkitRunnable {
 			if(LGPlugin.getRoleManager().getRoleID(role) == Roles.WEREWOLF)
 			{
 				Werewolf werewolf = (Werewolf) role;
-				//Check if ipdl
-				if(player.getName().equalsIgnoreCase(werewolf.ipdl.getName()))
+				if(werewolf.isIPDL(player))
 					name = "Infect père des loups";
+				else if(werewolf.isAnonyme(player))
+					name = "Loup Anonyme";
+				else if(werewolf.isWhiteWerewolf(player))
+					name = "Loup-Garou Blanc";
 			}
 			
 			Utils.sendTitle(player, EnumTitleAction.TITLE, "[{\"text\":\"Vous êtes \",\"color\":\"gray\"},{\"text\":\"" + name + "\",\"color\":\"red\",\"bold\":\"true\"}]");

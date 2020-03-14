@@ -36,12 +36,16 @@ commands:
     description: Commande du detective.
   lg-lgbt:
     description: Commande du pd.
+  lg-lgbt2:
+    description: Deuxième commande du pd pcq il est vraiment op.
   lg-witch:
     description: Commande de la sorcière.
   lg-salva:
     description: Commande du salvateur.
   lg-ipdl:
     description: Commande de l'infect père des loups.
+  lg-lgb:
+    description: Commande du loup-garou blanc.
   lg-npc:
     description: test
     permission: test
@@ -56,3 +60,7 @@ commands:
     description: Affiche votre rôle et les informations complémentaires.
   lg-roles:
     description: Affiche les rôles et leurs informations complémentaires.
+  throw:
+    description: Tej un mec dans les airs
+    permission: throw.use
+    usage: §c/throw <player> or /throw <player> <velocity>

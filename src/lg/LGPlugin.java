@@ -6,6 +6,7 @@ import lg.commands.MeCmd;
 import lg.commands.NpcCmd;
 import lg.commands.RoleCmd;
 import lg.commands.StartCmd;
+import lg.commands.ThrowCmd;
 import lg.commands.ToggleGay;
 import lg.commands.chats.CoupleChat;
 import lg.commands.config.AddSpawnCmd;
@@ -16,6 +17,8 @@ import lg.commands.roles.CupidonCmd;
 import lg.commands.roles.DetectiveCmd;
 import lg.commands.roles.FortuneTellerCmd;
 import lg.commands.roles.IPDLCmd;
+import lg.commands.roles.LGBCmd;
+import lg.commands.roles.LGBT2Cmd;
 import lg.commands.roles.LGBTCmd;
 import lg.commands.roles.SalvaCmd;
 import lg.commands.roles.TelepathCmd;
@@ -30,6 +33,7 @@ import lg.game.events.roles.DetectiveEvents;
 import lg.game.events.roles.FTellerEvents;
 import lg.game.events.roles.HunterEvents;
 import lg.game.events.roles.IPDLEvents;
+import lg.game.events.roles.LGBEvents;
 import lg.game.events.roles.LGBTEvents;
 import lg.game.events.roles.SalvaEvents;
 import lg.game.events.roles.TelepathEvents;
@@ -85,12 +89,17 @@ public class LGPlugin extends JavaPlugin {
 		getCommand("lg-fteller").setExecutor(new FortuneTellerCmd());
 		getCommand("lg-detective").setExecutor(new DetectiveCmd());
 		getCommand("lg-lgbt").setExecutor(new LGBTCmd());
+		getCommand("lg-lgbt2").setExecutor(new LGBT2Cmd());
 		getCommand("lg-witch").setExecutor(new WitchCmd());
 		getCommand("lg-salva").setExecutor(new SalvaCmd());
 		getCommand("lg-ipdl").setExecutor(new IPDLCmd());
+		getCommand("lg-lgb").setExecutor(new LGBCmd());
 		
 		//Chats
 		getCommand("lg-c").setExecutor(new CoupleChat());
+		
+		//Fun
+		getCommand("throw").setExecutor(new ThrowCmd());
 		
 		//Game Events
 		PluginManager pm = getServer().getPluginManager();
@@ -107,6 +116,7 @@ public class LGPlugin extends JavaPlugin {
 		pm.registerEvents(new SalvaEvents(), this);
 		pm.registerEvents(new RoleCmdEvents(), this);
 		pm.registerEvents(new IPDLEvents(), this);
+		pm.registerEvents(new LGBEvents(), this);
 		
 		System.out.println("LG Plugin is running correctly.");
 	}

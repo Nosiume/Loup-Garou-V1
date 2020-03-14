@@ -27,7 +27,8 @@ public class Salvator extends Role {
 				Type.VILLAGER,
 				Sound.ITEM_SHIELD_BLOCK,
 				PotionEffectType.HERO_OF_THE_VILLAGE,
-				"Toutes les nuits, vous pouvez protéger quelqu'un de l'attaque des loups. Vous ne pouvez pas protéger deux fois la même personne.");
+				"Toutes les nuits, vous pouvez protéger quelqu'un de l'attaque des loups. Vous ne pouvez pas protéger deux fois la même personne.",
+				3);
 	
 		this.item = new ItemStack(Material.BLAZE_ROD, 1);
 		ItemMeta meta = item.getItemMeta();

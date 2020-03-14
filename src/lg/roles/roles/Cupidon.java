@@ -35,7 +35,8 @@ public class Cupidon extends Role {
 				Type.VILLAGER, 
 				Sound.ENTITY_ARROW_SHOOT,
 				PotionEffectType.WEAKNESS,
-				"Vous devez désigner deux personnes qui tomberont amoureux. Vous devez gagner avec eux.");
+				"Vous devez désigner deux personnes qui tomberont amoureux. Vous devez gagner avec eux.",
+				-1 );//Doesn't need a night order);
 	
 		this.item = new ItemStack(Material.BOW, 1);
 		ItemMeta meta = item.getItemMeta();

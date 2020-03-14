@@ -22,7 +22,8 @@ public class FortuneTeller extends Role {
 				Type.VILLAGER,
 				Sound.BLOCK_BEACON_ACTIVATE,
 				PotionEffectType.NIGHT_VISION,
-				"Chaque nuit, vous pouvez voir le rôle de quelqu'un, le rôle de la personne qui a été regardée pendant la nuit sera révélée a tous les villageois, sans le pseudo de la personne.");
+				"Chaque nuit, vous pouvez voir le rôle de quelqu'un, le rôle de la personne qui a été regardée pendant la nuit sera révélée a tous les villageois, sans le pseudo de la personne.",
+				1);
 	
 		this.item = new ItemStack(Material.ENDER_EYE, 1);
 		ItemMeta meta = item.getItemMeta();

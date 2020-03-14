@@ -6,14 +6,19 @@ public enum Roles {
 	WITCH, // DONE
 	FORTUNE_TELLER, // DONE
 	WEREWOLF, // DONE
-	WHITE_WEREWOLF,
-	INFECTED_WEREWOLF,
 	HUNTER, // DONE
 	ELDER, // DONE
-	SALVATOR,
+	SALVATOR, // DONE
 	WILD_CHILD, // DONE
 	TELEPATH, // DONE
 	DETECTIVE, // DONE
 	LGBT; // DONE
+	
+	/*
+	 * Theorical roles that are faculties added to some werewolves : 
+	 * - Infected
+	 * - Anonyme
+	 * - White werewolf
+	 */
 	
 }

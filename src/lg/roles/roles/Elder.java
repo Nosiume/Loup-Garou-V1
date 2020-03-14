@@ -18,7 +18,8 @@ public class Elder extends Role {
 				Type.VILLAGER, 
 				null,
 				PotionEffectType.DAMAGE_RESISTANCE,
-				"Vous ne vous avourez pas vaincu ! Si vous vous faites tuer par les loups garou pendant la nuit, vous ressusciterez (une seule fois hein).");
+				"Vous ne vous avourez pas vaincu ! Si vous vous faites tuer par les loups garou pendant la nuit, vous ressusciterez (une seule fois hein).",
+				-1); // Doesn't pass at night
 	
 		this.item = new ItemStack(Material.SKELETON_SKULL, 1);
 		ItemMeta meta = item.getItemMeta();
@@ -36,6 +37,7 @@ public class Elder extends Role {
 
 	@Override
 	public void onStart(Player p) {
+		canUse = true;
 		p.sendMessage(LGPlugin.PREFIX + "§eVous êtes §c" + name + ".");
 		p.sendMessage("§7 - " + getDesc());
 	}

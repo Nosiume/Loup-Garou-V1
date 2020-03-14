@@ -29,7 +29,8 @@ public class Detective extends Role {
 				Type.VILLAGER,
 				Sound.BLOCK_ENCHANTMENT_TABLE_USE,
 				PotionEffectType.WATER_BREATHING,
-				"Chaque nuit, vous devez désigner deux personnes, ainsi, si les deux personnes ne sont pas dans le même camp, vous le saurez. ⚠ Vous ne pouvez pas séléctionner deux fois la même personne.");
+				"Chaque nuit, vous devez désigner deux personnes, ainsi, si les deux personnes ne sont pas dans le même camp, vous le saurez. ⚠ Vous ne pouvez pas séléctionner deux fois la même personne.",
+				2);
 	
 		this.item = new ItemStack(Material.TRIPWIRE_HOOK, 1);
 		ItemMeta meta = item.getItemMeta();
@@ -57,12 +58,39 @@ public class Detective extends Role {
 		RoleManager rm = LGPlugin.getRoleManager();
 		
 		//We suppose that suspects list contains 2 players.
-		Role suspect1 = rm.getPlayerRole(suspects.get(0))
-				.size() > 1 ? rm.getRole(Roles.WEREWOLF) : rm.getPlayerRole(suspects.get(0)).get(0);
-		Role suspect2 = rm.getPlayerRole(suspects.get(1))
-				.size() > 1 ? rm.getRole(Roles.WEREWOLF) : rm.getPlayerRole(suspects.get(1)).get(0);;
+		List<Role> suspect1 = rm.getPlayerRole(suspects.get(0));		
+		List<Role> suspect2 = rm.getPlayerRole(suspects.get(1));
 		
-		boolean isSameType = suspect1.getType() == suspect2.getType();
+		Type type1 = null;
+		Type type2 = null;
+		
+		if(suspect1.size() > 1)
+			type1 = Type.WEREWOLF;
+		
+		if(suspect2.size() > 1)
+			type2 = Type.WEREWOLF;
+		
+		if(type1 == null && 
+				LGPlugin.getRoleManager().getRoleID(suspect1.get(0)) == Roles.WEREWOLF)
+		{
+			Werewolf werewolf = (Werewolf) suspect1.get(0);
+			if(werewolf.isAnonyme(suspects.get(0)))
+				type1 = Type.VILLAGER;
+			else
+				type1 = Type.WEREWOLF;
+		}
+		
+		if(type2 == null && 
+				LGPlugin.getRoleManager().getRoleID(suspect2.get(0)) == Roles.WEREWOLF)
+		{
+			Werewolf werewolf = (Werewolf) suspect2.get(0);
+			if(werewolf.isAnonyme(suspects.get(1)))
+				type2 = Type.VILLAGER;
+			else
+				type2 = Type.WEREWOLF;
+		}
+		
+		boolean isSameType = type1 == type2;
 		
 		p.playSound(p.getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 1f, 1f);
 		p.sendMessage("§7------------------------------------");

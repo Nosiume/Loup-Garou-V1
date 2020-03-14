@@ -27,7 +27,8 @@ public class WildChild extends Role {
 				Type.VILLAGER, 
 				Sound.ENTITY_CAT_AMBIENT,
 				PotionEffectType.SATURATION,
-				"Vous devez choisir un modèle. Si celui ci vient à mourir, vous deviendrez automatiquement loup-garou.");
+				"Vous devez choisir un modèle. Si celui ci vient à mourir, vous deviendrez automatiquement loup-garou.",
+				-1 );// Useless night order
 
 		this.item = new ItemStack(Material.BONE, 1);
 		ItemMeta meta = item.getItemMeta();

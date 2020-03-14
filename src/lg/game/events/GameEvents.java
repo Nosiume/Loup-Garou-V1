@@ -3,6 +3,8 @@ package lg.game.events;
 import lg.LGPlugin;
 import lg.game.LGGame;
 import lg.game.State;
+import lg.roles.Roles;
+import lg.roles.roles.Werewolf;
 
 import org.bukkit.Location;
 import org.bukkit.entity.EntityType;
@@ -15,6 +17,7 @@ import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
+import org.bukkit.inventory.ItemStack;
 
 public class GameEvents implements Listener {
 	
@@ -64,6 +67,28 @@ public class GameEvents implements Listener {
 		}
 	}
 	
+	
+	@EventHandler
+	public void onDropCanceler(PlayerDropItemEvent event)
+	{
+		ItemStack it = event.getItemDrop().getItemStack();
+		if(it.isSimilar(LGGame.cancelItem))
+		{
+			event.setCancelled(true);
+		}
+	}
+
+	@EventHandler
+	public void onBlock(BlockPlaceEvent event)
+	{
+		Werewolf werewolf = (Werewolf) LGPlugin.getRoleManager().getRole(Roles.WEREWOLF);
+		Player p = event.getPlayer();
+		if(werewolf.isPlayerRole(p) && werewolf.canUse)
+		{
+			event.setCancelled(true);
+		}
+	}
+	
 	@EventHandler
 	public void onBreak(BlockBreakEvent event)
 	{
@@ -71,17 +96,6 @@ public class GameEvents implements Listener {
 		if(!p.isOp())
 		{
 			p.sendMessage("§cTu n'as pas le droit de casser des blocs dans cette zone.");
-			event.setCancelled(true);
-		}
-	}
-	
-	@EventHandler
-	public void onPlace(BlockPlaceEvent event)
-	{
-		Player p = event.getPlayer();
-		if(!p.isOp())
-		{
-			p.sendMessage("§cTu n'as pas le droit de poser des blocs dans cette zone.");
 			event.setCancelled(true);
 		}
 	}

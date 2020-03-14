@@ -16,6 +16,12 @@ public class Vote {
 		this.voted = voted;
 	}
 	
+	public Vote(Player voted, int defaultVotes)
+	{
+		this.voted = voted;
+		this.votes = defaultVotes;
+	}
+	
 	public void vote(Player voter)
 	{
 		voters.add(voter);

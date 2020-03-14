@@ -19,7 +19,8 @@ public class Hunter extends Role {
 				Type.VILLAGER, 
 				Sound.ENTITY_CREEPER_PRIMED,
 				PotionEffectType.CONDUIT_POWER,
-				"Vous gagnez avec le village. Lorsque vous vous faites tuer, vous pouvez décider de tuer quelqu'un d'autre.");
+				"Vous gagnez avec le village. Lorsque vous vous faites tuer, vous pouvez décider de tuer quelqu'un d'autre.",
+				-1); // Role only activates after death
 	
 		this.item = new ItemStack(Material.ARROW, 1);
 		ItemMeta meta = item.getItemMeta();

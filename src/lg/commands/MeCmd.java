@@ -48,9 +48,17 @@ public class MeCmd implements CommandExecutor {
 						p.sendMessage(LGPlugin.PREFIX + "§eVous êtes §cInfect père des loups§e.");
 						p.sendMessage("§7 - Vous devez éliminer tous les innocents (ceux qui ne sont pas loup-garou). Une fois dans la partie, vous pouvez décider d'infecter un villageois tué par les loup-garou, ce dernier passera dans le camp des loup-garou. L'infecté gardera les facultés de son rôle");
 						return true;
+					} else if (werewolf.isAnonyme(p))
+					{
+						p.sendMessage(LGPlugin.PREFIX + "§eVous êtes §cLoup Anonyme§e.");
+						p.sendMessage("§7 - Vous faites parti du camp des loups-garou, si vous vous faite espionner par la voyante, elle verra que vous êtes simple villageois.");
+						return true;
+					} else if(werewolf.isWhiteWerewolf(p))
+					{
+						p.sendMessage(LGPlugin.PREFIX + "§eVous êtes §cLoup-Garou Blanc§e.");
+						p.sendMessage("§7 - Vous devez gagner SEUL. Toutes les deux nuits, vous pouvez éliminer un loup garou. Les autres compères loup garou pensent que vous êtes aussi Loup Garou simple.");
+						return true;
 					}
-					
-					//TODO: Test for lgb
 				}
 				
 				p.sendMessage(LGPlugin.PREFIX + "§eVous êtes §c" + role.get(0).getName());
